@@ -1,26 +1,43 @@
-package edu.monmouth.problemSet2;
+package edu.monmouth.ProblemSet3;
 
 public class MusicalInstrument {
     private String name;
     private String type;
     private int numberOfKeysorStrings;
+    private double price;
 
     private static final String UNKNOWNNAME = "UNKNOWNNAME";
     private static final String UNKNOWNTYPE = "UNKNOWNTYPE";
     private static final int UNKNOWNKEYSORSTRINGS = -1;
     private static final int MIN_KEYS_OR_STRINGS = 0;
     private static final int MAX_KEYS_OR_STRINGS = 100;
+    private static final double UNKNOWNPRICE = -9;
+    private static final double LOWESTPRICE = 0;
 
     public MusicalInstrument() {
         setName(UNKNOWNNAME);
         setType(UNKNOWNTYPE);
         setNumberOfKeysorStrings(UNKNOWNKEYSORSTRINGS);
+        setPrice(UNKNOWNPRICE);
     }
 
-    public MusicalInstrument(String name, String type, int numberOfKeysorStrings) {
+    public MusicalInstrument(String name, String type, int numberOfKeysorStrings, double price) {
         setName(name);
         setType(type);
         setNumberOfKeysorStrings(numberOfKeysorStrings);
+        setPrice(price);
+    }
+    
+    public double getPrice() {
+    	return price;
+    }
+    
+    public void setPrice(double price) {
+    	if(price >= LOWESTPRICE) {
+    		this.price = price;
+    	}else {
+    		price = UNKNOWNPRICE;
+    	}
     }
 
     public String getName() {
@@ -63,4 +80,5 @@ public class MusicalInstrument {
             this.numberOfKeysorStrings = UNKNOWNKEYSORSTRINGS;
         }
     }
+  
 }
