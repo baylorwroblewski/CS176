@@ -1,4 +1,4 @@
-package edu.monmouth.ProblemSet3;
+package edu.monmouth.ProblemSet4;
 
 public class MusicalInstrument {
     private String name;
@@ -6,19 +6,26 @@ public class MusicalInstrument {
     private int numberOfKeysorStrings;
     private double price;
 
-    private static final String UNKNOWNNAME = "UNKNOWNNAME";
-    private static final String UNKNOWNTYPE = "UNKNOWNTYPE";
-    private static final int UNKNOWNKEYSORSTRINGS = -1;
-    private static final int MIN_KEYS_OR_STRINGS = 0;
-    private static final int MAX_KEYS_OR_STRINGS = 100;
-    private static final double UNKNOWNPRICE = -9;
-    private static final double LOWESTPRICE = 0;
+    private  final String UNKNOWNNAME = "UNKNOWNNAME";
+    private  final String UNKNOWNTYPE = "UNKNOWNTYPE";
+    private  final int UNKNOWNKEYSORSTRINGS = -1;
+    private  final int MIN_KEYS_OR_STRINGS = 0;
+    private  final int MAX_KEYS_OR_STRINGS = 100;
+    private  final double UNKNOWNPRICE = -9;
+    private  final double LOWESTPRICE = 0;
+    private  final String[] VALID_TYPES = {"woodwind", "brass", "string", "percussion", "keyboard"};
+	private boolean isValidType;
 
     public MusicalInstrument() {
         setName(UNKNOWNNAME);
         setType(UNKNOWNTYPE);
         setNumberOfKeysorStrings(UNKNOWNKEYSORSTRINGS);
         setPrice(UNKNOWNPRICE);
+    }
+    public MusicalInstrument(String name, String type, int numberOfKeysorStrings) {
+    	setName(name);
+    	setType(type);
+    	setNumberOfKeysorStrings(numberOfKeysorStrings);
     }
 
     public MusicalInstrument(String name, String type, int numberOfKeysorStrings, double price) {
@@ -57,17 +64,18 @@ public class MusicalInstrument {
     }
 
     public void setType(String type) {
-        if (type != null && !type.trim().isEmpty()) {
-            String lowercaseType = type.toLowerCase();
-            if (lowercaseType.equals("woodwind") || lowercaseType.equals("string") || lowercaseType.equals("brass") || lowercaseType.equals("keyboard") || lowercaseType.equals("percussion")) {
-                this.type = lowercaseType;
-            } else {
-                this.type = UNKNOWNTYPE;
+    	isValidType = false;
+        for (String validType : VALID_TYPES) {
+            if (validType.equalsIgnoreCase(type)) {
+                isValidType = true;
+                this.type = type.toLowerCase();
+                break;
             }
-        } else {
-            this.type = UNKNOWNTYPE;
         }
-    }
+        if (!isValidType) {
+        	this.type = UNKNOWNTYPE;
+        	}
+        }
 
     public int getNumberOfKeysorStrings() {
         return numberOfKeysorStrings;
@@ -80,5 +88,6 @@ public class MusicalInstrument {
             this.numberOfKeysorStrings = UNKNOWNKEYSORSTRINGS;
         }
     }
+    
   
 }
